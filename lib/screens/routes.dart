@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/screens/tab/tab_box.dart';
+import 'tab/tab_box.dart';
 
 class AppRoutes {
   static Route generateRoute(RouteSettings settings) {

@@ -1,19 +1,19 @@
-import 'package:flutter_nt_ten/data/models/ebooks_model.dart';
+import '../data/models/ebooks_model.dart';
 
-abstract class CurrenciesState {}
+abstract class EbookState {}
 
-class CurrenciesSuccessState extends CurrenciesState {
-  final List<EbooksModel> currencies;
+class EbookSuccessState extends EbookState {
+  final List<EbooksModel> ebooks;
 
-  CurrenciesSuccessState({required this.currencies});
+  EbookSuccessState({required this.ebooks});
 }
 
-class CurrenciesInitialState extends CurrenciesState {}
+class EbookInitialState extends EbookState {}
 
-class CurrenciesLoadingState extends CurrenciesState {}
+class EbookLoadingState extends EbookState {}
 
-class CurrenciesErrorState extends CurrenciesState {
+class EbookErrorState extends EbookState {
   final String errorText;
 
-  CurrenciesErrorState(this.errorText);
+  EbookErrorState(this.errorText);
 }

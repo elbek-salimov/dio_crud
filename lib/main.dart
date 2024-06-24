@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_nt_ten/blocs/ebooks_bloc.dart';
-import 'package:flutter_nt_ten/blocs/ebooks_event.dart';
-import 'package:flutter_nt_ten/data/api_provider.dart';
-import 'package:flutter_nt_ten/data/currencies_repo.dart';
-import 'package:flutter_nt_ten/screens/routes.dart';
+
+import 'blocs/ebooks_bloc.dart';
+import 'blocs/ebooks_event.dart';
+import 'data/api_provider.dart';
+import 'data/ebooks_repo.dart';
+import 'screens/routes.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,14 +33,14 @@ class _AppState extends State<App> {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-            create: (_) => CurrenciesRepo(apiProvider: apiProvider)),
+            create: (_) => EbooksRepo(apiProvider: apiProvider)),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) =>
-                CurrenciesBloc(currenciesRepo: context.read<CurrenciesRepo>())
-                  ..add(GetCurrenciesEvent()),
+                EbookBloc(currenciesRepo: context.read<EbooksRepo>())
+                  ..add(GetEbooksEvent()),
           )
         ],
         child: const MyApp(),

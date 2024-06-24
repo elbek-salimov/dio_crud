@@ -1,6 +1,7 @@
+import 'package:dio_crud/utils/size/size_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/utils/colors/app_colors.dart';
-import 'package:flutter_nt_ten/utils/size/size_utils.dart';
+
+import '../colors/app_colors.dart';
 
 class AppTextStyle {
   //Inter

@@ -1,3 +1,5 @@
+import 'package:dio_crud/blocs/ebooks_event.dart';
+import 'package:dio_crud/screens/tab/put/put_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,25 +17,58 @@ class GetScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),
-      body: BlocConsumer<CurrenciesBloc, CurrenciesState>(
+      body: BlocConsumer<EbookBloc, EbookState>(
           builder: (context, state) {
-            if (state is CurrenciesLoadingState) {
+            if (state is EbookLoadingState) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            if (state is CurrenciesErrorState) {
+            if (state is EbookErrorState) {
               return Center(
                 child: Text(state.errorText),
               );
             }
-
-            if (state is CurrenciesSuccessState) {
+            if (state is EbookSuccessState) {
               return ListView(
-                children: List.generate(state.currencies.length, (index) {
+                children: List.generate(state.ebooks.length, (index) {
                   return ListTile(
-                    title: Text(state.currencies[index].name),
-                    subtitle: Text(state.currencies[index].author),
+                    title: Text(state.ebooks[index].name),
+                    subtitle: Text(state.ebooks[index].author),
+                    leading: SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Image.network(state.ebooks[index].image),
+                    ),
+                    trailing: PopupMenuButton(
+                      itemBuilder: (BuildContext context) {
+                        return [
+                          PopupMenuItem(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return PutScreen(
+                                    ebooksModel: state.ebooks[index]);
+                              }));
+                            },
+                            child: const Text("Edit"),
+                          ),
+                          PopupMenuItem(
+                            onTap: () {
+                              context.read<EbookBloc>().add(
+                                  DeleteEbookEvent(state.ebooks[index].id));
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                content: Text('Ebook deleted!'),
+                              ));
+                            },
+                            child: const Text(
+                              "Delete",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        ];
+                      },
+                    ),
                   );
                 }),
               );

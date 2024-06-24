@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_nt_ten/utils/constants/app_constants.dart';
 
 class ApiClient {
   ApiClient() {
@@ -17,8 +16,8 @@ class ApiClient {
       // baseUrl: AppConstants.currenciesBaseUrl,
       receiveTimeout: const Duration(seconds: 5),
       headers: {
-        "Authorization": "Bearer ZjNTUhh9hRSeHWb54H4_X_fxpm9Wa_bamUndATIvTN0SCxKtLQ",
-        "Content-Type": "application/Json"
+        "Authorization": "Bearer k-0gYa48sfx-z3L2FMTeQaQXvRNQCQ0kKH5hL3Kp9MrrMGwc5g",
+        "Content-Type": "application/json"
       },
     );
 

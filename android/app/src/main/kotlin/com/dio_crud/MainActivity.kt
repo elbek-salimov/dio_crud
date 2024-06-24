@@ -1,4 +1,4 @@
-package com.example.flutter_nt_ten
+package com.dio_crud
 
 import io.flutter.embedding.android.FlutterActivity
 

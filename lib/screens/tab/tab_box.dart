@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nt_ten/screens/tab/post/post_screen.dart';
-import 'package:flutter_nt_ten/screens/tab/put/put_screen.dart';
 
-import 'del/del_screen.dart';
 import 'get/get_screen.dart';
+import 'post/post_screen.dart';
 
 class TabBox extends StatefulWidget {
   const TabBox({super.key});
@@ -17,8 +15,6 @@ class _TabBoxState extends State<TabBox> {
   List<Widget> screens = [
     const GetScreen(),
     const PostScreen(),
-    const PutScreen(),
-    const DelScreen(),
   ];
 
   int activeIndex = 0;
@@ -26,6 +22,7 @@ class _TabBoxState extends State<TabBox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: screens[activeIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: activeIndex,
@@ -45,16 +42,6 @@ class _TabBoxState extends State<TabBox> {
             icon: Icon(Icons.add),
             label: "Post",
           ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.indigo,
-            icon: Icon(Icons.update),
-            label: "Put",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.indigo,
-            icon: Icon(Icons.delete),
-            label: "Del",
-          )
         ],
       ),
     );
